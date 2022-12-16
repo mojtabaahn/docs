@@ -25,3 +25,23 @@ cat /etc/os-release
 # Docker installation for ubuntu:
 # https://docs.docker.com/engine/install/ubuntu/
 ```
+
+```bash
+# DNS configuration
+sudo nano /etc/netplan/00-installer-config.yaml
+
+# add these after
+# nameservers:
+#  addresses: [185.51.200.2,178.22.122.100]
+# Final result will be like:
+network:
+  ethernets:
+    ens33:
+      dhcp4: true
+      nameservers:
+        addresses: [185.51.200.2,178.22.122.100]
+  version: 2
+  
+# THEN
+sudo netplan apply
+```
