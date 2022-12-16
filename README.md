@@ -50,3 +50,8 @@ sudo netplan apply
 # Git Installation
 sudo apt-get install -y git-all
 ```
+
+```bash
+# Reverse proxy for multiple domains on one server
+https://serverfault.com/questions/171678/nginx-config-front-end-reverse-proxy-to-another-port
+```
