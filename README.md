@@ -45,3 +45,8 @@ network:
 # THEN
 sudo netplan apply
 ```
+
+```bash
+# Git Installation
+sudo apt-get install -y git-all
+```
