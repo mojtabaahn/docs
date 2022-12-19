@@ -71,3 +71,10 @@ ssh-keygen -t rsa
 # Install make
 sudo apt-get install make
 ```
+
+```
+# Using Parspack docker registery
+echo "{\"registry-mirrors\": [\"https://registry.docker.ir\"]}" > /etc/docker/daemon.json
+systemctl daemon-reload
+systemctl restart docker
+```
