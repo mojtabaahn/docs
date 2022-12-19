@@ -78,3 +78,13 @@ echo "{\"registry-mirrors\": [\"https://registry.docker.ir\"]}" > /etc/docker/da
 systemctl daemon-reload
 systemctl restart docker
 ```
+
+```
+# list of installed packages
+apt list --installed
+```
+
+```
+# List of open ports
+sudo lsof -i -P -n | grep LISTEN
+```
