@@ -62,3 +62,12 @@ dpkg -i <filename>
 ```
 
 ‍‍‍ذشسا
+```bash
+# Generate ssh
+ssh-keygen -t rsa
+```
+
+```bash
+# Install make
+sudo apt-get install make
+```
