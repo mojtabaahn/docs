@@ -91,6 +91,7 @@ sudo lsof -i -P -n | grep LISTEN
 
 ```
 # Route table
+sudo apt-get install net-tools -y
 sudo route -n
 
 Kernel IP routing table
