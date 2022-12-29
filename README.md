@@ -88,3 +88,20 @@ apt list --installed
 # List of open ports
 sudo lsof -i -P -n | grep LISTEN
 ```
+
+```
+# Route table
+sudo route -n
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.1.1     0.0.0.0         UG    600    0        0 wlp2s0
+169.254.0.0     0.0.0.0         255.255.0.0     U     1000   0        0 wlp2s0
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+172.19.0.0      0.0.0.0         255.255.0.0     U     0      0        0 br-80956f029ba2
+172.20.0.0      0.0.0.0         255.255.0.0     U     0      0        0 br-563591f4e131
+172.21.0.0      0.0.0.0         255.255.0.0     U     0      0        0 br-4aa6f72fb3b0
+
+# Removing route
+sudo route del -net 172.21.0.0 gw 0.0.0.0 netmask 255.255.0.0 dev br-4aa6f72fb3b0 
+```
