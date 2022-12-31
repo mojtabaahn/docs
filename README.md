@@ -106,3 +106,13 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 # Removing route
 sudo route del -net 172.21.0.0 gw 0.0.0.0 netmask 255.255.0.0 dev br-4aa6f72fb3b0 
 ```
+
+```
+# Replace in file
+sed -i 's/search/replace/' filename
+```
+
+```
+# MYSQL restore
+mysql -uuser -ppassword < backupfile.sql
+```
