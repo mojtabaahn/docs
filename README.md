@@ -116,3 +116,19 @@ sed -i 's/search/replace/' filename
 # MYSQL restore
 mysql -uuser -ppassword < backupfile.sql
 ```
+
+
+```
+# Copying ssh public keys to hosts:
+ssh-copy-id username@remote_host
+
+# Then in host machine rune:
+sudo systemctl restart ssh
+```
+
+```
+# Gitlab runner installation: https://docs.gitlab.com/runner/install/linux-repository.html
+sudo gitlab-runner register
+sudo gitlab-runner list
+sudo gitlab-runner run <runner-name>
+```
