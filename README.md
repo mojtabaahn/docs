@@ -132,3 +132,12 @@ sudo gitlab-runner register
 sudo gitlab-runner list
 sudo gitlab-runner run <runner-name>
 ```
+
+```
+# change gitlab runner user
+nano /etc/systemd/system/gitlab-runner.service 
+# then 
+systemctl daemon-reload
+# then 
+service gitlab-runner restart
+```
