@@ -80,6 +80,12 @@ systemctl restart docker
 ```
 
 ```
+# Using google or someone's docker registry
+echo "{\"registry-mirrors\": [\"https://mirror.gcr.io\"]}" > /etc/docker/daemon.json
+systemctl daemon-reload
+systemctl restart docker
+
+```
 # list of installed packages
 apt list --installed
 ```
