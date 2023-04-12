@@ -148,3 +148,61 @@ systemctl daemon-reload
 # then 
 service gitlab-runner restart
 ```
+
+
+# Webserver Configuration
+#### Installing SSL On Ubuntu And Nginx Reverse Proxy:
+
+Follow This: https://certbot.eff.org/instructions?ws=other&os=ubuntufocal
+Then make a nginx .conf file like this
+```
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name www.domain.eu domain.eu;
+    server_tokens off;
+
+    location / {
+        proxy_pass http://localhost:4000;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+
+    server_name www.domain.eu domain.eu;
+
+    ssl_certificate /var/www/ssl/fullchain.pem;
+    ssl_certificate_key /var/www/ssl/privkey.pem;
+
+    location / {
+        proxy_pass http://localhost:4000;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+    }
+}
+```
+And a dockerfile like below:
+```
+version: "3"
+
+services:
+  webserver:
+    network_mode: host
+    image: nginx:latest
+    restart: always
+    volumes:
+      - "./nginx/:/etc/nginx/conf.d/:ro"
+```
+then run:
+```
+mkdir ssl
+sudo cp -rL /etc/letsencrypt/live/domain.eu ./ssl
+sudo chown -R user:user ssl
+```
