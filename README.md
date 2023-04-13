@@ -153,7 +153,15 @@ service gitlab-runner restart
 # Webserver Configuration
 #### Installing SSL On Ubuntu And Nginx Reverse Proxy:
 
-Follow This: https://certbot.eff.org/instructions?ws=other&os=ubuntufocal
+Either follow This: https://certbot.eff.org/instructions?ws=other&os=ubuntufocal
+Or use self-signed (snakeoil) certificates:
+
+```
+sudo apt-get install openssl
+mkdir ssl and cd ssl
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout private.key -out cert.crt
+```
+
 Then make a nginx .conf file like this
 ```
 server {
@@ -177,11 +185,12 @@ server {
 
     server_name www.domain.eu domain.eu;
 
-    ssl_certificate /var/www/ssl/fullchain.pem;
-    ssl_certificate_key /var/www/ssl/privkey.pem;
+    ssl_certificate /var/www/ssl/cert.crt;
+    ssl_certificate_key /var/www/ssl/private.key;
 
     location / {
         proxy_pass http://localhost:4000;
+        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;
@@ -199,8 +208,9 @@ services:
     restart: always
     volumes:
       - "./nginx/:/etc/nginx/conf.d/:ro"
+      - "./ssl/:/var/www/ssl/:ro"
 ```
-then run:
+then if using certbot run:
 ```
 mkdir ssl
 sudo cp -rL /etc/letsencrypt/live/domain.eu ./ssl
