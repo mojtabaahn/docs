@@ -206,3 +206,8 @@ mkdir ssl
 sudo cp -rL /etc/letsencrypt/live/domain.eu ./ssl
 sudo chown -R user:user ssl
 ```
+
+# Wordpress
+Debug Bar Plugin: https://wordpress.org/plugins/debug-bar/
+Debug Bar Console Plugin (Run PHP LIVE): https://wordpress.org/plugins/debug-bar-console/https://wordpress.org/plugins/debug-bar-console/
+SMTP Plugin: https://wordpress.org/plugins/wp-mail-smtp/
