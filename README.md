@@ -221,3 +221,10 @@ sudo chown -R user:user ssl
 - Debug Bar Plugin: https://wordpress.org/plugins/debug-bar/
 - Debug Bar Console Plugin (Run PHP LIVE): https://wordpress.org/plugins/debug-bar-console/https://wordpress.org/plugins/debug-bar-console/
 - SMTP Plugin: https://wordpress.org/plugins/wp-mail-smtp/
+
+# Ansible
+if ansible gets stuck in establishin ssh connection run
+```
+# Sauce: https://serverfault.com/questions/630253/ansible-stuck-on-gathering-facts
+rm -rf ~/.ansible/cp
+```
